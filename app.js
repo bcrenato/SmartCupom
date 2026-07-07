@@ -324,6 +324,185 @@ function removerProduto(id){
 
 }
 
+
+// ===============================
+// Cadastro de Cupons
+// ===============================
+
+
+const btnAdicionarCupom =
+document.getElementById("btnAdicionarCupom");
+
+
+
+btnAdicionarCupom.addEventListener("click",()=>{
+
+
+    const cupom = {
+
+
+        id: Date.now(),
+
+
+        nome:
+        document.getElementById("nomeCupom").value,
+
+
+        percentual:
+        Number(
+        document.getElementById("percentualCupom").value
+        ),
+
+
+        descontoMaximo:
+        Number(
+        document.getElementById("maximoCupom").value
+        ),
+
+
+        compraMinima:
+        Number(
+        document.getElementById("minimoCupom").value
+        )
+
+
+    };
+
+
+
+    if(!cupom.nome || !cupom.percentual){
+
+        alert("Informe nome e percentual");
+
+        return;
+
+    }
+
+
+
+    cupons.push(cupom);
+
+
+    salvarCupons();
+
+
+    mostrarCupons();
+
+
+    atualizarDashboard();
+
+
+});
+
+
+
+
+// ===============================
+// Mostrar Cupons
+// ===============================
+
+
+function mostrarCupons(){
+
+
+    const lista =
+    document.getElementById("listaCupons");
+
+
+    lista.innerHTML="";
+
+
+
+    cupons.forEach(cupom=>{
+
+
+        const div =
+        document.createElement("div");
+
+
+        div.className="card";
+
+
+
+        div.innerHTML=`
+
+
+        <h3>
+        🎟 ${cupom.nome}
+        </h3>
+
+
+        <p>
+        Desconto:
+        ${cupom.percentual}%
+        </p>
+
+
+        <p>
+        Máximo:
+        R$ ${cupom.descontoMaximo.toFixed(2)}
+        </p>
+
+
+        <p>
+        Compra mínima:
+        R$ ${cupom.compraMinima.toFixed(2)}
+        </p>
+
+
+
+        <button onclick="removerCupom(${cupom.id})">
+        🗑 Excluir
+        </button>
+
+
+        `;
+
+
+
+        lista.appendChild(div);
+
+
+
+    });
+
+
+}
+
+
+
+mostrarCupons();
+
+
+
+
+// ===============================
+// Excluir Cupom
+// ===============================
+
+
+function removerCupom(id){
+
+
+    cupons =
+    cupons.filter(
+        cupom=>cupom.id !== id
+    );
+
+
+    salvarCupons();
+
+
+    mostrarCupons();
+
+
+    atualizarDashboard();
+
+
+}
+
+
+
 // ===============================
 // Teste inicial
 // ===============================
