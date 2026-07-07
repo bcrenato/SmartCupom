@@ -502,6 +502,241 @@ function removerCupom(id){
 }
 
 
+// ===============================
+// Lista de Compras
+// ===============================
+
+
+let listaCompras =
+JSON.parse(localStorage.getItem("listaCompras")) || [];
+
+
+
+
+// Preencher produtos no seletor
+
+function carregarProdutosLista(){
+
+
+    const select =
+    document.getElementById("produtoLista");
+
+
+    if(!select) return;
+
+
+    select.innerHTML =
+    '<option value="">Selecione um produto</option>';
+
+
+
+    produtos.forEach(produto=>{
+
+
+        const option =
+        document.createElement("option");
+
+
+        option.value =
+        produto.id;
+
+
+        option.textContent =
+        produto.nome +
+        " - R$ " +
+        produto.preco.toFixed(2);
+
+
+
+        select.appendChild(option);
+
+
+    });
+
+
+}
+
+
+
+carregarProdutosLista();
+
+
+
+
+
+// Adicionar produto na lista
+
+
+const btnAdicionarLista =
+document.getElementById("btnAdicionarLista");
+
+
+
+if(btnAdicionarLista){
+
+
+btnAdicionarLista.addEventListener("click",()=>{
+
+
+    const idProduto =
+    Number(
+    document.getElementById("produtoLista").value
+    );
+
+
+
+    const quantidade =
+    Number(
+    document.getElementById("quantidadeLista").value
+    );
+
+
+
+    const produto =
+    produtos.find(
+        p=>p.id === idProduto
+    );
+
+
+
+    if(!produto){
+
+        alert("Selecione um produto");
+
+        return;
+
+    }
+
+
+
+    listaCompras.push({
+
+        id: produto.id,
+
+        nome: produto.nome,
+
+        preco: produto.preco,
+
+        quantidade: quantidade
+
+    });
+
+
+
+    salvarLista();
+
+
+    mostrarLista();
+
+
+
+});
+
+
+}
+
+
+
+
+// Salvar lista
+
+
+function salvarLista(){
+
+localStorage.setItem(
+"listaCompras",
+JSON.stringify(listaCompras)
+);
+
+}
+
+
+
+
+// Mostrar lista
+
+
+function mostrarLista(){
+
+
+const div =
+document.getElementById("listaCompras");
+
+
+if(!div) return;
+
+
+div.innerHTML="";
+
+
+
+listaCompras.forEach(item=>{
+
+
+    const card =
+    document.createElement("div");
+
+
+    card.className="card";
+
+
+    card.innerHTML=`
+
+    <h3>${item.nome}</h3>
+
+    <p>
+    Quantidade:
+    ${item.quantidade}
+    </p>
+
+
+    <p>
+    Total:
+    R$ ${(item.preco * item.quantidade).toFixed(2)}
+    </p>
+
+
+    <button onclick="removerDaLista(${item.id})">
+    🗑 Remover
+    </button>
+
+    `;
+
+
+    div.appendChild(card);
+
+
+
+});
+
+
+}
+
+
+
+
+// Remover item
+
+
+function removerDaLista(id){
+
+
+listaCompras =
+listaCompras.filter(
+item=>item.id !== id
+);
+
+
+salvarLista();
+
+
+mostrarLista();
+
+
+}
+
+
+mostrarLista();
 
 // ===============================
 // Teste inicial
