@@ -805,7 +805,7 @@ function calcularMelhorCupom(){
 
 
     const estrategia =
-    encontrarMelhorEstrategia();
+calcularEstrategiaCompleta(listaCompras);
 
 
 
