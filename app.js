@@ -163,7 +163,166 @@ function adicionarCupom(cupom){
 
 }
 
+// ===============================
+// Cadastro de Produtos
+// ===============================
 
+
+const btnAdicionarProduto =
+document.getElementById("btnAdicionarProduto");
+
+
+btnAdicionarProduto.addEventListener("click",()=>{
+
+
+    const produto = {
+
+
+        id: Date.now(),
+
+
+        nome:
+        document.getElementById("nomeProduto").value,
+
+
+        preco:
+        Number(
+        document.getElementById("precoProduto").value
+        ),
+
+
+        quantidade:
+        Number(
+        document.getElementById("quantidadeProduto").value
+        ),
+
+
+        categoria:
+        document.getElementById("categoriaProduto").value
+
+
+    };
+
+
+
+    if(!produto.nome || !produto.preco){
+
+        alert("Informe nome e preço");
+
+        return;
+
+    }
+
+
+
+    produtos.push(produto);
+
+
+    salvarProdutos();
+
+
+    mostrarProdutos();
+
+
+    atualizarDashboard();
+
+
+});
+
+
+
+
+// ===============================
+// Mostrar produtos
+// ===============================
+
+
+function mostrarProdutos(){
+
+
+    const lista =
+    document.getElementById("listaProdutos");
+
+
+    lista.innerHTML="";
+
+
+
+    produtos.forEach(produto=>{
+
+
+        const div =
+        document.createElement("div");
+
+
+        div.className="card";
+
+
+        div.innerHTML=`
+
+        <h3>${produto.nome}</h3>
+
+        <p>
+        💰 R$ ${produto.preco.toFixed(2)}
+        </p>
+
+        <p>
+        Quantidade: ${produto.quantidade}
+        </p>
+
+        <p>
+        Categoria: ${produto.categoria || "-"}
+        </p>
+
+        <button onclick="removerProduto(${produto.id})">
+        🗑 Excluir
+        </button>
+
+        `;
+
+
+
+        lista.appendChild(div);
+
+
+
+    });
+
+
+
+}
+
+
+
+mostrarProdutos();
+
+
+
+
+// ===============================
+// Excluir Produto
+// ===============================
+
+
+function removerProduto(id){
+
+
+    produtos =
+    produtos.filter(
+        produto=>produto.id !== id
+    );
+
+
+    salvarProdutos();
+
+
+    mostrarProdutos();
+
+
+    atualizarDashboard();
+
+
+}
 
 // ===============================
 // Teste inicial
