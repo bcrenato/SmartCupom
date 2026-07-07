@@ -1,1 +1,164 @@
-gggg
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SmartCupom</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+    <h1>💰 SmartCupom</h1>
+    <button id="btnTema">🌙</button>
+</header>
+
+
+<nav>
+
+<button data-page="dashboard">🏠 Dashboard</button>
+
+<button data-page="produtos">📦 Produtos</button>
+
+<button data-page="cupons">🎟 Cupons</button>
+
+<button data-page="listas">🛒 Listas</button>
+
+<button data-page="simulacao">📊 Simular</button>
+
+</nav>
+
+
+
+<main>
+
+
+<section id="dashboard" class="pagina">
+
+<h2>Dashboard</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Produtos</h3>
+<span id="totalProdutos">0</span>
+</div>
+
+
+<div class="card">
+<h3>Cupons</h3>
+<span id="totalCupons">0</span>
+</div>
+
+
+<div class="card">
+<h3>Economia</h3>
+<span>R$ 0,00</span>
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<section id="produtos" class="pagina oculto">
+
+<h2>Produtos</h2>
+
+
+<button>
+➕ Novo Produto
+</button>
+
+
+<div id="listaProdutos">
+
+</div>
+
+
+</section>
+
+
+
+
+<section id="cupons" class="pagina oculto">
+
+<h2>Cupons</h2>
+
+
+<button>
+➕ Novo Cupom
+</button>
+
+
+<div id="listaCupons">
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section id="listas" class="pagina oculto">
+
+<h2>Listas de Compras</h2>
+
+
+<button>
+➕ Nova Lista
+</button>
+
+
+<div id="listaCompras">
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section id="simulacao" class="pagina oculto">
+
+<h2>Simulação Inteligente</h2>
+
+
+<p>
+Aqui ficará o algoritmo que encontrará
+a melhor combinação de compras e cupons.
+</p>
+
+
+<button>
+🚀 Calcular Melhor Estratégia
+</button>
+
+
+<div id="resultado">
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+<script src="app.js"></script>
+
+
+</body>
+
+</html>
