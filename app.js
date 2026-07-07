@@ -738,6 +738,193 @@ mostrarLista();
 
 mostrarLista();
 
+
+// ===============================
+// Simulação de Cupons - V0.2
+// ===============================
+
+
+const btnSimular =
+document.getElementById("btnSimular");
+
+
+
+if(btnSimular){
+
+
+btnSimular.addEventListener("click",()=>{
+
+
+    calcularMelhorCupom();
+
+
+});
+
+
+}
+
+
+
+
+function calcularMelhorCupom(){
+
+
+    const resultado =
+    document.getElementById("resultadoSimulacao");
+
+
+    if(listaCompras.length === 0){
+
+        resultado.innerHTML =
+        "<p>Nenhum produto na lista.</p>";
+
+        return;
+
+    }
+
+
+
+    let total = 0;
+
+
+
+    listaCompras.forEach(item=>{
+
+
+        total += item.preco * item.quantidade;
+
+
+    });
+
+
+
+
+    let melhorCupom = null;
+
+    let maiorDesconto = 0;
+
+
+
+
+    cupons.forEach(cupom=>{
+
+
+        if(total < cupom.compraMinima){
+
+            return;
+
+        }
+
+
+
+        let desconto =
+        total * (cupom.percentual / 100);
+
+
+
+        if(desconto > cupom.descontoMaximo){
+
+            desconto =
+            cupom.descontoMaximo;
+
+        }
+
+
+
+        if(desconto > maiorDesconto){
+
+
+            maiorDesconto = desconto;
+
+            melhorCupom = cupom;
+
+
+        }
+
+
+
+    });
+
+
+
+
+
+    if(!melhorCupom){
+
+
+        resultado.innerHTML = `
+
+        <div class="card">
+
+        <h3>Nenhum cupom vantajoso</h3>
+
+        <p>
+        Total da compra:
+        R$ ${total.toFixed(2)}
+        </p>
+
+        </div>
+
+        `;
+
+
+        return;
+
+
+    }
+
+
+
+
+
+    resultado.innerHTML = `
+
+
+    <div class="card">
+
+
+    <h3>🏆 Melhor resultado</h3>
+
+
+    <p>
+    Total da compra:
+    R$ ${total.toFixed(2)}
+    </p>
+
+
+    <p>
+    Cupom:
+    ${melhorCupom.nome}
+    </p>
+
+
+    <p>
+    Desconto:
+    R$ ${maiorDesconto.toFixed(2)}
+    </p>
+
+
+    <h3>
+
+    Valor final:
+
+    R$ ${(total - maiorDesconto).toFixed(2)}
+
+    </h3>
+
+
+    </div>
+
+
+    `;
+
+
+
+}
+
+
+
+
 // ===============================
 // Teste inicial
 // ===============================
