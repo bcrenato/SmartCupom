@@ -176,12 +176,36 @@ placeholder="Compra mínima R$">
 
 <section id="listas" class="pagina oculto">
 
-<h2>Listas de Compras</h2>
+<h2>🛒 Lista de Compras</h2>
 
 
-<button>
-➕ Nova Lista
+<div class="formulario">
+
+<select id="produtoLista">
+    <option value="">Selecione um produto</option>
+</select>
+
+
+<input 
+id="quantidadeLista"
+type="number"
+value="1"
+min="1"
+placeholder="Quantidade">
+
+
+<button id="btnAdicionarLista">
+➕ Adicionar à Lista
 </button>
+
+
+</div>
+
+
+<hr>
+
+
+<h3>Produtos da compra</h3>
 
 
 <div id="listaCompras">
