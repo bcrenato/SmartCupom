@@ -120,12 +120,47 @@ placeholder="Categoria">
 
 <section id="cupons" class="pagina oculto">
 
-<h2>Cupons</h2>
+<h2>🎟 Cupons</h2>
 
 
-<button>
-➕ Novo Cupom
+<div class="formulario">
+
+<input 
+id="nomeCupom" 
+placeholder="Nome do cupom">
+
+
+<input 
+id="percentualCupom" 
+type="number"
+placeholder="Desconto %">
+
+
+<input 
+id="maximoCupom" 
+type="number"
+step="0.01"
+placeholder="Desconto máximo R$">
+
+
+<input 
+id="minimoCupom" 
+type="number"
+step="0.01"
+placeholder="Compra mínima R$">
+
+
+<button id="btnAdicionarCupom">
+➕ Adicionar Cupom
 </button>
+
+</div>
+
+
+<hr>
+
+
+<h3>Cupons cadastrados</h3>
 
 
 <div id="listaCupons">
