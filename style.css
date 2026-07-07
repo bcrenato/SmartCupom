@@ -1,1 +1,227 @@
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body {
+    background: #f4f6f8;
+    color: #333;
+    min-height: 100vh;
+}
+
+
+/* Cabeçalho */
+
+header {
+    background: #1565c0;
+    color: white;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+header h1 {
+    font-size: 22px;
+}
+
+
+header button {
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+
+
+/* Menu */
+
+nav {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    background: white;
+    overflow-x: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
+nav button {
+
+    border: none;
+    background: #e3f2fd;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+}
+
+
+nav button:hover {
+
+    background: #bbdefb;
+
+}
+
+
+
+/* Conteúdo */
+
+main {
+
+    padding: 20px;
+
+}
+
+
+h2 {
+
+    margin-bottom: 20px;
+
+}
+
+
+
+/* Cards */
+
+.cards {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+
+    gap: 15px;
+
+}
+
+
+
+.card {
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+
+}
+
+
+
+.card h3 {
+
+    font-size: 16px;
+
+    color: #666;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+.card span {
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    color: #1565c0;
+
+}
+
+
+
+/* Botões */
+
+button {
+
+    transition: 0.2s;
+
+}
+
+
+main button {
+
+    background: #1565c0;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+
+main button:hover {
+
+    opacity:0.85;
+
+}
+
+
+
+/* Páginas */
+
+.oculto {
+
+    display:none;
+
+}
+
+
+
+/* Resultado */
+
+#resultado {
+
+    margin-top:20px;
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:15px;
+
+}
+
+
+
+/* Responsivo */
+
+@media(max-width:600px){
+
+    header h1{
+
+        font-size:18px;
+
+    }
+
+
+    main{
+
+        padding:12px;
+
+    }
+
+
+}
