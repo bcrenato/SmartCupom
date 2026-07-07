@@ -69,12 +69,44 @@
 
 <section id="produtos" class="pagina oculto">
 
-<h2>Produtos</h2>
+<h2>📦 Produtos</h2>
 
 
-<button>
-➕ Novo Produto
+<div class="formulario">
+
+<input id="nomeProduto" placeholder="Nome do produto">
+
+<input 
+id="precoProduto" 
+type="number" 
+step="0.01" 
+placeholder="Preço">
+
+
+<input 
+id="quantidadeProduto" 
+type="number" 
+placeholder="Quantidade"
+value="1">
+
+
+<input 
+id="categoriaProduto" 
+placeholder="Categoria">
+
+
+<button id="btnAdicionarProduto">
+➕ Adicionar Produto
 </button>
+
+
+</div>
+
+
+<hr>
+
+
+<h3>Produtos cadastrados</h3>
 
 
 <div id="listaProdutos">
@@ -83,7 +115,6 @@
 
 
 </section>
-
 
 
 
