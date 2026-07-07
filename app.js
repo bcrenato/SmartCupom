@@ -766,6 +766,11 @@ btnSimular.addEventListener("click",()=>{
 
 
 
+// ===============================
+// Simulação Inteligente V0.3
+// ===============================
+
+
 function calcularMelhorCupom(){
 
 
@@ -773,10 +778,24 @@ function calcularMelhorCupom(){
     document.getElementById("resultadoSimulacao");
 
 
+
     if(listaCompras.length === 0){
 
-        resultado.innerHTML =
-        "<p>Nenhum produto na lista.</p>";
+
+        resultado.innerHTML = `
+
+        <div class="card">
+
+        <h3>⚠️ Lista vazia</h3>
+
+        <p>
+        Adicione produtos antes de simular.
+        </p>
+
+        </div>
+
+        `;
+
 
         return;
 
@@ -784,84 +803,20 @@ function calcularMelhorCupom(){
 
 
 
-    let total = 0;
+
+    const estrategia =
+    encontrarMelhorEstrategia();
 
 
 
-    listaCompras.forEach(item=>{
-
-
-        total += item.preco * item.quantidade;
-
-
-    });
-
-
-
-
-    let melhorCupom = null;
-
-    let maiorDesconto = 0;
-
-
-
-
-    cupons.forEach(cupom=>{
-
-
-        if(total < cupom.compraMinima){
-
-            return;
-
-        }
-
-
-
-        let desconto =
-        total * (cupom.percentual / 100);
-
-
-
-        if(desconto > cupom.descontoMaximo){
-
-            desconto =
-            cupom.descontoMaximo;
-
-        }
-
-
-
-        if(desconto > maiorDesconto){
-
-
-            maiorDesconto = desconto;
-
-            melhorCupom = cupom;
-
-
-        }
-
-
-
-    });
-
-
-
-
-
-    if(!melhorCupom){
+    if(estrategia.compras.length === 0){
 
 
         resultado.innerHTML = `
 
         <div class="card">
 
-        <h3>Nenhum cupom vantajoso</h3>
-
-        <p>
-        Total da compra:
-        R$ ${total.toFixed(2)}
-        </p>
+        Nenhuma estratégia encontrada.
 
         </div>
 
@@ -877,40 +832,93 @@ function calcularMelhorCupom(){
 
 
 
-    resultado.innerHTML = `
-
+    let html = `
 
     <div class="card">
 
-
-    <h3>🏆 Melhor resultado</h3>
-
-
-    <p>
-    Total da compra:
-    R$ ${total.toFixed(2)}
-    </p>
+    <h3>🏆 Melhor estratégia encontrada</h3>
 
 
-    <p>
-    Cupom:
-    ${melhorCupom.nome}
-    </p>
+    `;
 
 
-    <p>
-    Desconto:
-    R$ ${maiorDesconto.toFixed(2)}
-    </p>
+
+    estrategia.compras.forEach((compra,index)=>{
 
 
-    <h3>
+        html += `
 
-    Valor final:
+        <hr>
 
-    R$ ${(total - maiorDesconto).toFixed(2)}
+        <h3>
+        Compra ${index+1}
+        </h3>
 
-    </h3>
+
+        <ul>
+        `;
+
+
+
+        compra.produtos.forEach(produto=>{
+
+
+            html += `
+
+            <li>
+            ${produto.nome}
+            -
+            R$ ${produto.preco.toFixed(2)}
+            </li>
+
+            `;
+
+
+        });
+
+
+
+        html += `
+
+        </ul>
+
+
+        <p>
+        Total:
+        R$ ${compra.total.toFixed(2)}
+        </p>
+
+
+        <p>
+        Cupom:
+        ${compra.cupom ?
+        compra.cupom.nome :
+        "Nenhum"}
+        </p>
+
+
+
+        `;
+
+
+    });
+
+
+
+
+    html += `
+
+
+    <hr>
+
+
+    <h2>
+
+    💰 Economia:
+
+    R$ ${estrategia.economia.toFixed(2)}
+
+    </h2>
 
 
     </div>
@@ -918,6 +926,9 @@ function calcularMelhorCupom(){
 
     `;
 
+
+
+    resultado.innerHTML = html;
 
 
 }
